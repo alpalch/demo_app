@@ -17,4 +17,18 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  def send_welcome_mail
+    @user = current_user
+    @email = @user.email
+    # if user_signed_in?
+    #   UserMailer.welcome_email(@user).deliver
+    #   redirect_to root_path, notice: 'Welcome letter sent.'
+    # end
+  end
+
+  def send_mail
+    UserMailer.welcome_email(current_user).deliver
+    redirect_to root_path, notice: 'Welcome letter sent.'
+  end
 end

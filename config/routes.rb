@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'users/profile', as: 'user_root'
+  get :send_welcome_mail, to: 'users#send_welcome_mail', as: :send_welcome_mail
+  post :send_mail, to: 'users#send_mail'
 
   root to: 'posts#index'
   resources :posts

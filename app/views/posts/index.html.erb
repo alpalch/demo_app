@@ -14,10 +14,16 @@
 </table>
 
 <br>
-
+<footer style="background-color: aquamarine; height: 5vh; font-weight: bold">
+  <div class="reg_form" style="float:left; margin-left: 10vw;">
 <% if user_signed_in? %>
     <span>Здравствуйте, <%= current_user.email %></span>
     <%= link_to 'Quit', destroy_user_session_path, :method => :delete %>
 <% else %>
     <%= link_to 'Log in', new_user_session_path %> или <%= link_to 'New User Registration', new_user_registration_path %>
 <% end %>
+  </div>
+  <div class="magic_button" style="float: right; margin-right: 10vw;">
+  <%= link_to 'Welcome me', send_welcome_mail_path(@user, @email) %>
+  </div>
+</footer>

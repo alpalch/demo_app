@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-(1..1000).each do |i|
+(1..100000).each do |i|
   Post.create!(title: %{'Lorem ipsum'}, content: %{'Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                Praesent egestas lobortis blandit. Nunc at tortor nibh. Sed eget
                commodo erat. Nam laoreet auctor lacus, sed vehicula tortor accumsan ut.
