@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @post = Post.new
     @posts = Post.all.reverse_order.page(params[:page]).per(25)
   end
 
@@ -24,15 +25,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-
-    respond_to do |format|
+    @post = Post.new(params[:post])
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
+        json = { json: { post: render_to_string("posts/_post", locals:{post: @post}) }}
+        render json
       else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        json = { json: {post: render_to_string("posts/_error", layout: false, locals:{post: @post}, status: :unprocessable_entity)}}
+        render json
       end
     end
   end
@@ -71,4 +70,3 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :user_id)
     end
-end
