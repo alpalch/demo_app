@@ -49,4 +49,5 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'actionmailer', '~> 4.2', '>= 4.2.6'
+  gem 'devise'
 end
