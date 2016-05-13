@@ -25,14 +25,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
-      if @post.save
-        json = { json: { post: render_to_string("posts/_post", locals:{post: @post}) }}
-        render json
-      else
+    @post = Post.new(post_params)
+    if @post.save
+      json = { json: { post: render_to_string("posts/_post", locals:{post: @post}) }}
+      render json
+    else
         json = { json: {post: render_to_string("posts/_error", layout: false, locals:{post: @post}, status: :unprocessable_entity)}}
         render json
-      end
     end
   end
 
@@ -70,3 +69,4 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :user_id)
     end
+end

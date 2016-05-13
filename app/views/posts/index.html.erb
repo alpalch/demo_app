@@ -5,9 +5,11 @@
 <table>
 
   <tbody>
-    <%= render 'new'%>
-    <%= render @posts%>
-    <%= paginate @posts %>
+    <%= render 'new' %>
+    <div id="post-list">
+      <%= render @posts %>
+      <%= paginate @posts %>
+    </div>
   </tbody>
 </table>
 
